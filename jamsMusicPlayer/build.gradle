@@ -11,12 +11,12 @@ android {
 
         //RenderScript backward compatibility for guassian blurs.
         renderscriptTargetApi 19
-        renderscriptSupportMode true
+        //renderscriptSupportMode true
     }
 
     buildTypes {
         release {
-            runProguard true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
         }
     }
@@ -30,6 +30,11 @@ android {
         exclude 'META-INF/NOTICE.txt'
     }
 }
+
+
+android.applicationVariants.all { variant ->
+    variant.outputs[0].processResources.manifestFile = file('src/main/AndroidManifest.xml')
+    variant.outputs[0].processManifest.enabled=false }
 
 repositories {
     mavenCentral()
